@@ -1,14 +1,12 @@
-
-
-
+game();
 
 /**Below are the functions used in this file**/
-function computerSelection() {
+function computerPlay() {
     const choiceArray = ["ROCK", "PAPER", "SCISSORS"];
     let index = randInt(choiceArray.length);
-    string = choiceArray[index];
+    choice = choiceArray[index];
 
-    return string;
+    return choice;
 }
 
 function randInt(max) {
@@ -17,6 +15,7 @@ function randInt(max) {
 
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toUpperCase();
+    computerSelection = computerPlay();
 
     if(playerSelection == "ROCK" && computerSelection == "ROCK") {
         return "It's a tie! Play again.";
@@ -53,7 +52,8 @@ function game() {
 
     while(!done) {
         let playerSelection = prompt("Choose your weapon: rock, paper, or scissors.");
-        let computerSelection = computerSelection();
+        let computerSelection;
+        computerSelection = computerPlay();
 
         let result = playRound(playerSelection, computerSelection);
 

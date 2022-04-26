@@ -10,7 +10,7 @@ function computerPlay() {
 }
 
 function randInt(max) {
-    return Math.floor(Math.random() * max);
+    return Math.floor(Math.random() * max+1);
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -41,7 +41,7 @@ function playRound(playerSelection, computerSelection) {
     else if(playerSelection == "SCISSORS" && computerSelection == "ROCK") {
         return "You lose! Rock beats scissors.";
     }
-    else if(playerSelection == "SCISSORS" && computerSelection == "PAPER") {
+    else {
         return "You win! Scissors beats paper.";
     }
 }
@@ -52,8 +52,12 @@ function game() {
 
     while(!done) {
         let playerSelection = prompt("Choose your weapon: rock, paper, or scissors.");
-        let computerSelection;
-        computerSelection = computerPlay();
+
+        //Checks to make sure that the player will choose either rock, paper, or scissors
+        while(!"ROCK PAPER SCISSORS".includes(playerSelection.toUpperCase()))
+            playerSelection = prompt("Please choose rock, paper, or scissors.")
+
+        let computerSelection = computerPlay();
 
         let result = playRound(playerSelection, computerSelection);
 

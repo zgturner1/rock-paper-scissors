@@ -1,0 +1,52 @@
+@import url('http://fonts.cdnfonts.com/css/slater-industrial');
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 800px;
+    background-color: black;
+}
+
+.text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 200px;
+}
+
+.beginning-text {
+    font-family: 'Slater Industrial', sans-serif;
+    color: white;
+    transform: transform .7s, box-shadow .7s, background-color .2s;
+}
+
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    width: 150px;
+    font-family: 'Slater Industrial', sans-serif;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    transition: transform .7s, box-shadow .7s, background-color .2s;
+    outline: -webkit-focus-ring-color auto 1px;
+}
+
+button:active {
+    background-color: darkgray;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px white;
+}
+
+.invisible {
+    display: none;
+}

@@ -9,7 +9,7 @@ const humanScoreTracker = document.getElementById('human');
 const machineScoreTracker = document.getElementById('machine');
 const gameOverMessage = document.querySelector('.game-over-message');
 const resultMessage = document.querySelector('.result');
-
+const playAgainButton = document.querySelector('.play-again');
 
 const rockButton = document.getElementById('rock');
 const paperButton = document.getElementById('paper');
@@ -87,6 +87,11 @@ scissorsButton.addEventListener('click', function() {
         gameOver();
 });
 
+gameOverMessage.addEventListener('animationend', function(e) {
+    playAgainButton.classList.remove('invisible');
+});
+
+playAgainButton.addEventListener('click', playAgain)
 
 /**Below are the functions used in this file**/
 function computerPlay() {
@@ -149,4 +154,15 @@ function gameOver() {
     gameOverMessage.classList.remove('invisible');
 }
 
+function playAgain() {
+    this.classList.add('invisible');
+    gameOverMessage.classList.add('invisible');
 
+    gameButtons.forEach(button => button.classList.remove('invisible'));
+    scoreContainer.classList.remove('invisible');
+
+    humanScore = 0;
+    machineScore = 0;
+    humanScoreTracker.textContent = "Human: 0";
+    machineScoreTracker.textContent = "Machine: 0";
+}

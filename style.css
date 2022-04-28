@@ -5,8 +5,8 @@ body {
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    height: 800px;
     background-color: black;
+    min-height: 100vh;
 }
 
 .text-container {
@@ -32,12 +32,14 @@ button {
     height: 150px;
     width: 150px;
     font-family: 'Slater Industrial', sans-serif;
+    font-size: 20px;
     background-color: black;
     color: white;
     border-radius: 10px;
     transition: all .7s;
     outline: -webkit-focus-ring-color auto 1px;
     animation: fadein 2s linear;
+    margin: 150px 0 150px 0;
 }
 
 button:active {
@@ -54,9 +56,45 @@ button:hover {
     gap: 20px;
 }
 
+.score-container {
+    margin: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    font-family: 'Slater Industrial', sans-serif;
+    color: white;
+}
+
+.result {
+    font-family: 'Slater Industrial', sans-serif;
+    color: white;
+}
+
+.score-header {
+    font-size: 32px;
+}
+
+.scores {
+    display: flex;
+    gap: 75px;
+}
+
+.game-over-message {
+    font-size: 40px;
+    font-family: 'Slater Industrial', sans-serif;
+    color: white;
+    animation: fadein 2s linear;
+    align-self: center;
+    justify-self: center;
+}
+
 .invisible {
-    animation: fadeout 2s linear;
     display: none;
+}
+
+.endBody {
+    justify-content: center;
 }
 
 @keyframes fadein {

@@ -1,17 +1,97 @@
-game();
+let humanScore = 0;
+let machineScore = 0;
 
-const button = document.querySelector(".continue");
-const text = document.querySelectorAll(".beginning-text");
-button.addEventListener('click', function(e) {
+const continueButton = document.querySelector(".continue");
+const textContainer = document.querySelector('.text-container');
+const gameButtons = document.querySelectorAll(".game-button");
+const scoreContainer = document.querySelector(".score-container");
+const humanScoreTracker = document.getElementById('human');
+const machineScoreTracker = document.getElementById('machine');
+const gameOverMessage = document.querySelector('.game-over-message');
+const resultMessage = document.querySelector('.result');
+
+
+const rockButton = document.getElementById('rock');
+const paperButton = document.getElementById('paper');
+const scissorsButton = document.getElementById('scissors');
+
+
+continueButton.addEventListener('click', function(e) {
     this.classList.add('invisible');
-    text.forEach(text => text.classList.add('invisible'));
-    console.log(this.classList);
+    textContainer.classList.add('invisible');
+    gameButtons.forEach(button => button.classList.remove('invisible'));
+    scoreContainer.classList.remove('invisible');
 });
+
+rockButton.addEventListener('click', function() {
+    console.log(resultMessage);
+    let computerChoice = computerPlay();
+    let result = playRound('rock', computerChoice);
+    resultMessage.classList.remove('invisible');
+    resultMessage.textContent = result;
+
+    if(result.includes('tie')) 
+        return;
+    else if(result.includes('lose')) {
+        machineScore++;
+        machineScoreTracker.textContent = `Machine: ${machineScore}`;
+    }
+    else {
+        humanScore++;
+        humanScoreTracker.textContent = `Human: ${humanScore}`;
+    }
+
+    if(humanScore >= 5 || machineScore >= 5)
+        gameOver();
+});
+
+paperButton.addEventListener('click', function() {
+    let computerChoice = computerPlay();
+    let result = playRound('paper', computerChoice);
+    resultMessage.classList.remove('invisible');
+    resultMessage.textContent = result;
+
+    if(result.includes('tie')) 
+        return;
+    else if(result.includes('lose')) {
+        machineScore++;
+        machineScoreTracker.textContent = `Machine: ${machineScore}`;
+    }
+    else {
+        humanScore++;
+        humanScoreTracker.textContent = `Human: ${humanScore}`;
+    }
+
+    if(humanScore >= 5 || machineScore >= 5)
+        gameOver();
+});
+
+scissorsButton.addEventListener('click', function() {
+    let computerChoice = computerPlay();
+    let result = playRound('scissors', computerChoice);
+    resultMessage.classList.remove('invisible');
+    resultMessage.textContent = result;
+
+    if(result.includes('tie')) 
+        return;
+    else if(result.includes('lose')) {
+        machineScore++;
+        machineScoreTracker.textContent = `Machine: ${machineScore}`;
+    }
+    else {
+        humanScore++;
+        humanScoreTracker.textContent = `Human: ${humanScore}`;
+    }
+
+    if(humanScore >= 5 || machineScore >= 5)
+        gameOver();
+});
+
 
 /**Below are the functions used in this file**/
 function computerPlay() {
     const choiceArray = ["ROCK", "PAPER", "SCISSORS"];
-    let index = randInt(choiceArray.length);
+    let index = randInt(choiceArray.length-1);
     choice = choiceArray[index];
 
     return choice;
@@ -54,37 +134,19 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    let done = false;
-    let computerWins = 0, playerWins = 0;
+function gameOver() {
+    gameButtons.forEach(button => button.classList.add('invisible'));
+    scoreContainer.classList.add('invisible');
 
-    while(!done) {
-        let playerSelection = "rock";
+    const body = document.querySelector('body');
 
-        //Checks to make sure that the player will choose either rock, paper, or scissors
-        while(!"ROCK PAPER SCISSORS".includes(playerSelection.toUpperCase()))
-            playerSelection = prompt("Please choose rock, paper, or scissors.")
-
-        let computerSelection = computerPlay();
-
-        let result = playRound(playerSelection, computerSelection);
-
-        if(result.toUpperCase().includes("WIN")) {
-            //The player beat the computer at rps
-            playerWins++;
-            console.log("You win this round! Player wins: " + playerWins + " Computer wins: " + computerWins);
-        }
-        else {
-            computerWins++;
-            console.log("You lose this round... Player wins: " + playerWins + " Computer wins: " + computerWins);
-        }
-
-        if(playerWins == 5 || computerWins == 5)
-            done = true;
-    }
-
-    if(playerWins == 5)
-        console.log("You win! Mankind reigns supreme!")
+    if(machineScore > humanScore)
+        gameOverMessage.textContent = "Oh no...the machines are taking over..."
     else
-        console.log("Oh no...the machines are taking over.")
+        gameOverMessage.textContent = "You did it! You saved humanity!"
+
+    body.classList.add('endBody');
+    gameOverMessage.classList.remove('invisible');
 }
+
+

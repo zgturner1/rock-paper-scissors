@@ -1,5 +1,13 @@
 game();
 
+const button = document.querySelector(".continue");
+const text = document.querySelectorAll(".beginning-text");
+button.addEventListener('click', function(e) {
+    this.classList.add('invisible');
+    text.forEach(text => text.classList.add('invisible'));
+    console.log(this.classList);
+});
+
 /**Below are the functions used in this file**/
 function computerPlay() {
     const choiceArray = ["ROCK", "PAPER", "SCISSORS"];
@@ -51,7 +59,7 @@ function game() {
     let computerWins = 0, playerWins = 0;
 
     while(!done) {
-        let playerSelection = prompt("Choose your weapon: rock, paper, or scissors.");
+        let playerSelection = "rock";
 
         //Checks to make sure that the player will choose either rock, paper, or scissors
         while(!"ROCK PAPER SCISSORS".includes(playerSelection.toUpperCase()))

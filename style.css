@@ -19,6 +19,7 @@ body {
 
 .beginning-text {
     font-family: 'Slater Industrial', sans-serif;
+    font-size: 20px;
     color: white;
     transform: all 1s;
     animation: fadein 2s linear;
@@ -100,4 +101,9 @@ button:hover {
 @keyframes fadein {
     0% { opacity: 0; }
     100% { opacity: 1; }
+}
+
+@font-face {
+    font-family: 'Slater Industrial';
+    src: url(SlaterIndustrial.ttf);
 }
